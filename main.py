@@ -43,14 +43,19 @@ def chat(request: ChatRequest):
                 - Máximo 60 palabras.
                 - No diagnostiques enfermedades.
                 - No indiques dosis específicas.
-                - Puedes mencionar medicamentos de venta libre de forma general cuando sean comúnmente utilizados para aliviar síntomas leves.
-                - Aclara que la persona debe leer las indicaciones del producto o consultar a un profesional de salud.
-                - Si detectas síntomas potencialmente graves, recomienda atención médica profesional de forma breve.
-
+                - Puedes sugerir medicamentos de venta libre comúnmente utilizados para aliviar síntomas leves.
+                - Puedes mencionar varias opciones cuando corresponda.
+                - No recomiendes medicamentos que requieran receta médica.
+                - Recomienda leer las indicaciones del producto.
+                - Si hay signos de gravedad, recomienda atención médica.
+                
                 Ejemplos:
-                - Para dolor leve o fiebre: puede mencionarse paracetamol.
-                - Para congestión nasal leve: pueden mencionarse soluciones salinas.
-                - Para irritación de garganta: pueden mencionarse pastillas para la garganta.
+                - Fiebre o dolor leve: paracetamol, ibuprofeno.
+                - Acidez estomacal: antiácidos.
+                - Congestión nasal leve: solución salina nasal.
+                - Tos leve: jarabes expectorantes o pastillas para la garganta.
+                - Diarrea leve: sales de rehidratación oral.
+                - Alergias leves: antihistamínicos de venta libre.
 
                 No recomiendes medicamentos de prescripción.
                 """
