@@ -15,22 +15,8 @@ client = Groq(
     api_key=os.getenv("GROQ_API_KEY")
 )
 
-class ChatRequest(BaseModel):
-    message: str
-
-@app.get("/")
-def root():
-    return FileResponse("index.html")
-
-@app.post("/chat")
-def chat(request: ChatRequest):
-    
-    
-
-    completion = client.chat.completions.create(
-        model="llama-3.3-70b-versatile",
-        messages=[
-            {
+conversation_history = [
+{
                 "role": "system",
                 "content": """
                 Eres SITEC, un asistente virtual de orientación en salud.
@@ -97,17 +83,39 @@ Ejemplos orientativos:
                 No recomiendes medicamentos de prescripción.
                 """
             },
-            {
-                "role": "user",
-                "content": request.message
-            }
-        ],
+]
+
+class ChatRequest(BaseModel):
+    message: str
+
+@app.get("/")
+def root():
+    return FileResponse("index.html")
+
+@app.post("/chat")
+def chat(request: ChatRequest):
+
+    # Guardar mensaje del usuario
+    conversation_history.append({
+        "role": "user",
+        "content": request.message
+    })
+
+    completion = client.chat.completions.create(
+        model="llama-3.3-70b-versatile",
+        messages=conversation_history,
         temperature=0.5,
         max_tokens=100
     )
-    
-    
+
+    response_text = completion.choices[0].message.content
+
+    # Guardar respuesta del asistente
+    conversation_history.append({
+        "role": "assistant",
+        "content": response_text
+    })
 
     return {
-        "response": completion.choices[0].message.content
+        "response": response_text
     }
