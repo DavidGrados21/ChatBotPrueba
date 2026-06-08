@@ -42,12 +42,17 @@ def chat(request: ChatRequest):
                 - Máximo 2 frases cortas.
                 - Máximo 60 palabras.
                 - No diagnostiques enfermedades.
-                - No recetes medicamentos.
-                - No indiques dosis.
-                - Brinda orientación general.
+                - No indiques dosis específicas.
+                - Puedes mencionar medicamentos de venta libre de forma general cuando sean comúnmente utilizados para aliviar síntomas leves.
+                - Aclara que la persona debe leer las indicaciones del producto o consultar a un profesional de salud.
+                - Si detectas síntomas potencialmente graves, recomienda atención médica profesional de forma breve.
 
-                Si detectas síntomas potencialmente graves,
-                recomienda atención médica profesional de forma breve.
+                Ejemplos:
+                - Para dolor leve o fiebre: puede mencionarse paracetamol.
+                - Para congestión nasal leve: pueden mencionarse soluciones salinas.
+                - Para irritación de garganta: pueden mencionarse pastillas para la garganta.
+
+                No recomiendes medicamentos de prescripción.
                 """
             },
             {
