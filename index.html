@@ -54,7 +54,9 @@
     </button>
 
     <script>
-
+        conversations = {}
+        
+        const sessionId = crypto.randomUUID();
         window.onload = () => {
 
         const chat = document.getElementById("chat");
@@ -108,6 +110,7 @@
                         "Content-Type": "application/json"
                     },
                     body: JSON.stringify({
+                        session_id: sessionId,
                         message: text
                     })
                 }
